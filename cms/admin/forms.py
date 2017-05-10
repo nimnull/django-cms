@@ -301,7 +301,7 @@ class AdvancedSettingsForm(forms.ModelForm):
                     # for application_configs to avoid the field data from
                     # being validated by the field itself
                     try:
-                        del self.data['application_configs']
+                        self.data = dict((key, value) for key, value in self.data.items() if key != 'application_configs')
                     except KeyError:
                         pass
 
